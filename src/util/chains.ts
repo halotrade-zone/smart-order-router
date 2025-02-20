@@ -1,51 +1,88 @@
 import {
-  ChainId,
   Currency,
   Ether,
   NativeCurrency,
   Token,
 } from '@uniswap/sdk-core';
 
+export enum ChainId {
+  MAINNET = 1,
+  GOERLI = 5,
+  SEPOLIA = 11155111,
+  BNB = 56,
+  OPTIMISM = 10,
+  OPTIMISM_GOERLI = 420,
+  OPTIMISM_SEPOLIA = 11155420,
+  ARBITRUM_ONE = 42161,
+  ARBITRUM_GOERLI = 421613,
+  ARBITRUM_SEPOLIA = 421614,
+  POLYGON = 137,
+  POLYGON_MUMBAI = 80001,
+  CELO = 42220,
+  CELO_ALFAJORES = 44787,
+  GNOSIS = 100,
+  MOONBEAM = 1284,
+  AVALANCHE = 43114,
+  BASE = 8453,
+  BASE_GOERLI = 84531,
+  BASE_SEPOLIA = 84532,
+  BLAST = 81457,
+  ZORA = 7777777,
+  ZKSYNC = 324,
+  WORLDCHAIN = 480,
+  UNICHAIN_SEPOLIA = 1301,
+  MONAD_TESTNET = 10143,
+  UNICHAIN = 130,
+  ROOTSTOCK = 30,
+  ZORA_SEPOLIA = 7777778,
+  AURA_EUPHORIA = 6321,
+  AURA_MAINNET = 6322,
+}
+
 // WIP: Gnosis, Moonbeam
 export const SUPPORTED_CHAINS: ChainId[] = [
-  ChainId.MAINNET,
-  ChainId.OPTIMISM,
-  ChainId.OPTIMISM_GOERLI,
-  ChainId.OPTIMISM_SEPOLIA,
-  ChainId.ARBITRUM_ONE,
-  ChainId.ARBITRUM_GOERLI,
-  ChainId.ARBITRUM_SEPOLIA,
-  ChainId.POLYGON,
-  ChainId.POLYGON_MUMBAI,
-  ChainId.SEPOLIA,
-  ChainId.CELO_ALFAJORES,
-  ChainId.CELO,
-  ChainId.BNB,
-  ChainId.AVALANCHE,
-  ChainId.BASE,
-  ChainId.BLAST,
-  ChainId.ZORA,
-  ChainId.ZKSYNC,
-  ChainId.WORLDCHAIN,
-  ChainId.UNICHAIN,
-  ChainId.UNICHAIN_SEPOLIA,
-  ChainId.MONAD_TESTNET,
-  ChainId.BASE_SEPOLIA,
+  // ChainId.MAINNET,
+  // ChainId.OPTIMISM,
+  // ChainId.OPTIMISM_GOERLI,
+  // ChainId.OPTIMISM_SEPOLIA,
+  // ChainId.ARBITRUM_ONE,
+  // ChainId.ARBITRUM_GOERLI,
+  // ChainId.ARBITRUM_SEPOLIA,
+  // ChainId.POLYGON,
+  // ChainId.POLYGON_MUMBAI,
+  // ChainId.SEPOLIA,
+  // ChainId.CELO_ALFAJORES,
+  // ChainId.CELO,
+  // ChainId.BNB,
+  // ChainId.AVALANCHE,
+  // ChainId.BASE,
+  // ChainId.BLAST,
+  // ChainId.ZORA,
+  // ChainId.ZKSYNC,
+  // ChainId.WORLDCHAIN,
+  // ChainId.UNICHAIN,
+  // ChainId.UNICHAIN_SEPOLIA,
+  // ChainId.MONAD_TESTNET,
+  // ChainId.BASE_SEPOLIA,
   // Gnosis and Moonbeam don't yet have contracts deployed yet
+  ChainId.AURA_EUPHORIA,
+  ChainId.AURA_MAINNET
 ];
 
 export const V2_SUPPORTED = [
-  ChainId.MAINNET,
-  ChainId.SEPOLIA,
-  ChainId.ARBITRUM_ONE,
-  ChainId.OPTIMISM,
-  ChainId.POLYGON,
-  ChainId.BASE,
-  ChainId.BNB,
-  ChainId.AVALANCHE,
-  ChainId.MONAD_TESTNET,
-  ChainId.UNICHAIN_SEPOLIA,
-  ChainId.UNICHAIN,
+  // ChainId.MAINNET,
+  // ChainId.SEPOLIA,
+  // ChainId.ARBITRUM_ONE,
+  // ChainId.OPTIMISM,
+  // ChainId.POLYGON,
+  // ChainId.BASE,
+  // ChainId.BNB,
+  // ChainId.AVALANCHE,
+  // ChainId.MONAD_TESTNET,
+  // ChainId.UNICHAIN_SEPOLIA,
+  // ChainId.UNICHAIN,
+  ChainId.AURA_EUPHORIA,
+  ChainId.AURA_MAINNET
 ];
 
 export const V4_SUPPORTED = [ChainId.SEPOLIA];
@@ -141,6 +178,10 @@ export const ID_TO_CHAIN_ID = (id: number): ChainId => {
       return ChainId.MONAD_TESTNET;
     case 130:
       return ChainId.UNICHAIN;
+    case 6321:
+      return ChainId.AURA_EUPHORIA;
+    case 6322:
+      return ChainId.AURA_MAINNET;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -174,6 +215,8 @@ export enum ChainName {
   UNICHAIN_SEPOLIA = 'unichain-sepolia',
   UNICHAIN = 'unichain-mainnet',
   MONAD_TESTNET = 'monad-testnet',
+  AURA_EUPHORIA = 'aura-euphoria',
+  AURA_MAINNET = 'aura-mainnet',
 }
 
 export enum NativeCurrencyName {
@@ -186,6 +229,8 @@ export enum NativeCurrencyName {
   BNB = 'BNB',
   AVALANCHE = 'AVAX',
   MONAD = 'MON',
+  AURA_EUPHORIA = 'AURA',
+  AURA_MAINNET = 'AURA',
 }
 
 export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
@@ -323,6 +368,8 @@ export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
   [ChainId.MONAD_TESTNET]: NativeCurrencyName.MONAD,
   [ChainId.BASE_SEPOLIA]: NativeCurrencyName.ETHER,
   [ChainId.UNICHAIN]: NativeCurrencyName.ETHER,
+  [ChainId.AURA_EUPHORIA]: NativeCurrencyName.AURA_EUPHORIA,
+  [ChainId.AURA_MAINNET]: NativeCurrencyName.AURA_MAINNET,
 };
 
 export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
@@ -381,6 +428,10 @@ export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
       return ChainName.UNICHAIN;
     case 10143:
       return ChainName.MONAD_TESTNET;
+    case 6321:
+      return ChainName.AURA_EUPHORIA;
+    case 6322:
+      return ChainName.AURA_MAINNET;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -440,6 +491,10 @@ export const ID_TO_PROVIDER = (id: ChainId): string => {
       return process.env.JSON_RPC_PROVIDER_BASE_SEPOLIA!;
     case ChainId.UNICHAIN:
       return process.env.JSON_RPC_PROVIDER_UNICHAIN!;
+    case ChainId.AURA_EUPHORIA:
+      return process.env.JSON_RPC_PROVIDER_EUPHORIA!;
+    case ChainId.AURA_MAINNET:
+      return process.env.JSON_RPC_PROVIDER_MAINNET!;
     default:
       throw new Error(`Chain id: ${id} not supported`);
   }
@@ -651,6 +706,20 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
     'WETH',
     'Wrapped Ether'
   ),
+  [ChainId.AURA_EUPHORIA]: new Token(
+    ChainId.AURA_EUPHORIA,
+    '0x220c08739c70a3e33b8b7e90f6076751415cc6c2',
+    18,
+    'WAURA',
+    'Wrapped Aura'
+  ),
+  [ChainId.AURA_MAINNET]: new Token(
+    ChainId.AURA_MAINNET,
+    '0xDE47A655a5d9904BD3F7e1A536D8323fBD99993A',
+    18,
+    'WAURA',
+    'Wrapped Aura'
+  ),
 };
 
 function isMatic(
@@ -801,6 +870,30 @@ class AvalancheNativeCurrency extends NativeCurrency {
   }
 }
 
+function isAura(chainId: number) {
+  return chainId === ChainId.AURA_EUPHORIA || chainId === ChainId.AURA_MAINNET;
+}
+
+class AuraNativeCurrency extends NativeCurrency {
+  equals(other: Currency): boolean {
+    return other.isNative && other.chainId === this.chainId;
+  }
+
+  get wrapped(): Token {
+    if (!isAura(this.chainId)) throw new Error('Not aura');
+    const nativeCurrency = WRAPPED_NATIVE_CURRENCY[this.chainId];
+    if (nativeCurrency) {
+      return nativeCurrency;
+    }
+    throw new Error(`Does not support this chain ${this.chainId}`);
+  }
+
+  public constructor(chainId: number) {
+    if (!isAura(chainId)) throw new Error('Not aura');
+    super(chainId, 18, 'AURA', 'Aura');
+  }
+}
+
 export class ExtendedEther extends Ether {
   public get wrapped(): Token {
     if (this.chainId in WRAPPED_NATIVE_CURRENCY) {
@@ -838,6 +931,9 @@ export function nativeOnChain(chainId: number): NativeCurrency {
     cachedNativeCurrency[chainId] = new BnbNativeCurrency(chainId);
   } else if (isAvax(chainId)) {
     cachedNativeCurrency[chainId] = new AvalancheNativeCurrency(chainId);
+  } else if (isAura(chainId)) {
+    cachedNativeCurrency[chainId] = new AuraNativeCurrency(chainId);
+  }
   } else {
     cachedNativeCurrency[chainId] = ExtendedEther.onChain(chainId);
   }

@@ -1,10 +1,11 @@
 import { Interface } from '@ethersproject/abi';
 import { BigNumber } from '@ethersproject/bignumber';
 import { parseBytes32String } from '@ethersproject/strings';
-import { ChainId, Token } from '@uniswap/sdk-core';
+import { Token } from '@uniswap/sdk-core';
 import _ from 'lodash';
 
 import { IERC20Metadata__factory } from '../types/v3/factories/IERC20Metadata__factory';
+import { ChainId } from '../util';
 import { log, WRAPPED_NATIVE_CURRENCY } from '../util';
 
 import { IMulticallProvider, Result } from './multicall-provider';
@@ -788,6 +789,22 @@ export const DAI_UNICHAIN = new Token(
   18,
   'DAI',
   'Dai Stablecoin'
+);
+
+export const USDT_AURA_EUPHORIA = new Token(
+  ChainId.AURA_EUPHORIA,
+  '0x59a1FCcF28bA3DAd00e457e45349667ADA1Fa7C3',
+  6,
+  'USDT',
+  'USDT'
+);
+
+export const USDT_AURA_MAINNET = new Token(
+  ChainId.AURA_MAINNET,
+  '0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd',
+  6,
+  'USDT',
+  'Tether USD'
 );
 
 export class TokenProvider implements ITokenProvider {

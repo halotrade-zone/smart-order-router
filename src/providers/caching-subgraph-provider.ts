@@ -1,8 +1,10 @@
 import { Protocol } from '@uniswap/router-sdk';
-import { ChainId, Currency, Token } from '@uniswap/sdk-core';
+import { Currency, Token } from '@uniswap/sdk-core';
+
 
 import { SubgraphPool } from '../routers/alpha-router/functions/get-candidate-pools';
 import { nativeOnChain, WRAPPED_NATIVE_CURRENCY } from '../util';
+import { ChainId } from '../util/chains';
 
 import { ICache } from './cache';
 import { ProviderConfig } from './provider';
@@ -24,7 +26,6 @@ import {
   ETH_BNB,
   OP_OPTIMISM,
   USDB_BLAST,
-  USDCE_ZKSYNC,
   USDC_ARBITRUM,
   USDC_AVAX,
   USDC_BASE,
@@ -39,7 +40,10 @@ import {
   USDC_UNICHAIN_SEPOLIA,
   USDC_WORLDCHAIN,
   USDC_ZKSYNC,
+  USDCE_ZKSYNC,
   USDT_ARBITRUM,
+  USDT_AURA_EUPHORIA,
+  USDT_AURA_MAINNET,
   USDT_BNB,
   USDT_MAINNET,
   USDT_MONAD_TESTNET,
@@ -180,6 +184,16 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     WRAPPED_NATIVE_CURRENCY[ChainId.MONAD_TESTNET]!,
     USDT_MONAD_TESTNET,
   ],
+  [ChainId.AURA_EUPHORIA]: [
+    nativeOnChain(ChainId.AURA_EUPHORIA),
+    WRAPPED_NATIVE_CURRENCY[ChainId.AURA_EUPHORIA]!,
+    USDT_AURA_EUPHORIA,
+  ],
+  [ChainId.AURA_MAINNET]: [
+    nativeOnChain(ChainId.AURA_MAINNET),
+    WRAPPED_NATIVE_CURRENCY[ChainId.AURA_MAINNET]!,
+    USDT_AURA_MAINNET,
+  ]
 };
 
 export interface IV3SubgraphProvider {
